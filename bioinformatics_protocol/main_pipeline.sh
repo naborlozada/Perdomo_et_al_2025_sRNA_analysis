@@ -5,14 +5,14 @@
 
 # --------------------------------------------------------------------------------------------------------
 # Description
-# This script process the raw reads of a single sample (R1) by: mapping to a reference sequence, sort it, and calculate (R script call):
+# This script process the raw reads of a single sample (R1) by: mapping to a reference sequence, sort aligned reads, and calculate (R script call):
 #    coverage, size distribution, and small RNAs presence across the targeted reference sequence.
 #
 # Run: 
 #      bash  main_pipeline.sh  [ARG_1]  [ARG_2]
 # where: 
-#     ARG_1: sample names with the full path directory
-#     ARG_2: targeted sequence ID: EVE or CFAV
+#     ARG_1: sample name with the full path directory: /path/to/dir/sample.R1.fq.gz
+#     ARG_2: targeted sequence FLAG: EVE or CFAV 
 # --------------------------------------------------------------------------------------------------------
 
 
@@ -42,7 +42,7 @@ echo "filename:    $FILENAME";
 echo "RefSeqID:    $TARGET_REF_SEQ";
 echo "outdir:      $OUTDIR";
 echo "RefSeq2Map:  $REFERENCE_SEQ2MAP";
-echo "Rscript:     $make_coverage_analysis_EVE_R";
+echo "Rscript:     $RSCRIPT_COVERAGE";
 echo
 echo
 
@@ -55,9 +55,9 @@ sleep 2;
 
 # Alignment
 echo "----------------------------------------------------------------------------------------------------------------------------------"
-echo "[1] ---> Alignment_command_line: time bowtie -q -v 1 -S -p 20 -x $REFERENCE_SEQ2MAP $SAMPLE  $OUTDIR/${FILENAME}.sam"
+echo "[1] ---> Alignment_command_line: time bowtie -q -v 1 -S -p 20 -x $REFERENCE_SEQ2MAP  $SAMPLE  $OUTDIR/${FILENAME}.sam"
 # command line
-time bowtie -q -v 1 -S -p 20 -x $REFERENCE_SEQ2MAP $SAMPLE  $OUTDIR/${FILENAME}.sam
+time bowtie -q -v 1 -S -p 20 -x $REFERENCE_SEQ2MAP  $SAMPLE  $OUTDIR/${FILENAME}.sam
 wait;
 sleep 3;
 
@@ -74,9 +74,9 @@ sleep 3;
 
 ## Calculate coverage, size groups and distribution across the target mapped sequence (R script)
 echo "----------------------------------------------------------------------------------------------------------------------------------"
-echo "[3] ---> Rscript_command_line: time /home/nlozada/R/R-3.6.2/lib/R/bin/Rscript  $RSCRIPT_COVERAGE  $OUTDIR/${FILENAME}.sorted.sam  ${FILENAME}  $TARGET_REF_SEQ $OUTDIR";
+echo "[3] ---> Rscript_command_line: time /home/nlozada/R/R-3.6.2/lib/R/bin/Rscript  $RSCRIPT_COVERAGE  $OUTDIR/${FILENAME}.sorted.sam  ${FILENAME}  $TARGET_REF_SEQ  $OUTDIR";
 # command line
-time /home/nlozada/R/R-3.6.2/lib/R/bin/Rscript  $make_coverage_analysis_EVE_R  $OUTDIR/${FILENAME}.sorted.sam  ${FILENAME}  $TARGET_REF_SEQ $OUTDIR
+time /home/nlozada/R/R-3.6.2/lib/R/bin/Rscript  $RSCRIPT_COVERAGE  $OUTDIR/${FILENAME}.sorted.sam  ${FILENAME}  $TARGET_REF_SEQ  $OUTDIR
 wait;
 sleep 3;
 

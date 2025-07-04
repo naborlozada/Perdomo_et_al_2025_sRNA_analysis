@@ -74,9 +74,9 @@ sleep 3;
 
 ## Calculate coverage, size groups and distribution across the target mapped sequence (R script)
 echo "----------------------------------------------------------------------------------------------------------------------------------"
-echo "[3] ---> Rscript_command_line: time /home/jaketu/R/R-3.6.2/lib/R/bin/Rscript  $RSCRIPT_COVERAGE  $OUTDIR/${FILENAME}.sorted.sam  ${FILENAME}  $TARGET_REF_SEQ $OUTDIR";
+echo "[3] ---> Rscript_command_line: time /home/nlozada/R/R-3.6.2/lib/R/bin/Rscript  $RSCRIPT_COVERAGE  $OUTDIR/${FILENAME}.sorted.sam  ${FILENAME}  $TARGET_REF_SEQ $OUTDIR";
 # command line
-time /home/jaketu/R/R-3.6.2/lib/R/bin/Rscript  $make_coverage_analysis_EVE_R  $OUTDIR/${FILENAME}.sorted.sam  ${FILENAME}  $TARGET_REF_SEQ $OUTDIR
+time /home/nlozada/R/R-3.6.2/lib/R/bin/Rscript  $make_coverage_analysis_EVE_R  $OUTDIR/${FILENAME}.sorted.sam  ${FILENAME}  $TARGET_REF_SEQ $OUTDIR
 wait;
 sleep 3;
 

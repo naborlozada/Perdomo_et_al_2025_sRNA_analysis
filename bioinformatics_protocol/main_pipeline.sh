@@ -3,9 +3,17 @@
 # author: Alejandro Nabor Lozada Chavez
 # questions: nabor.lozada@gmail.com
 
-# run it again with a new directory: mapping_to_EVE
-# run it again with a new directory and seq: EVE_integration
-
+# --------------------------------------------------------------------------------------------------------
+# Description
+# This script process the raw reads of a single sample (R1) by: mapping to a reference sequence, sort it, and calculate (R script call):
+#    coverage, size distribution, and small RNAs presence across the targeted reference sequence.
+#
+# Run: 
+#      bash  main_pipeline.sh  [ARG_1]  [ARG_2]
+# where: 
+#     ARG_1: sample names with the full path directory
+#     ARG_2: targeted sequence ID: EVE or CFAV
+# --------------------------------------------------------------------------------------------------------
 
 
 # timing
@@ -20,9 +28,10 @@ cd workdir;
 SAMPLE=$1;
 TARGET_REF_SEQ=$2;
 FILENAME=$(basename ${SAMPLE} .fq.gz);
-OUTDIR="/home/nlozada/perdomo_project/outputs/mapping_to_CFAV";
-REFERENCE_SEQ2MAP="/home/nlozada/perdomo_project/reference_sequences/CFAV_genome/CFAV_genome_RioPiedras";
 RSCRIPT_COVERAGE=sRNAs_analysis_coverage_and_sizes.R;
+OUTDIR="/home/nlozada/perdomo_project/outputs/mapping_to_CFAV";
+REFERENCE_SEQ2MAP="/home/nlozada/perdomo_project/reference_sequences/CFAV_genome/CFAV_genome_RioPiedras";       ## EVE sequence or CFAV genome
+
 
 
 echo
@@ -42,30 +51,31 @@ sleep 2;
 
 
 
-##mkdir -p $OUTDIR
-
-#### 1. **Main Pipeline Script (`pipeline.sh`)**
-
+#### ** Main Pipeline Script ** ####
 
 # Alignment
 echo "----------------------------------------------------------------------------------------------------------------------------------"
 echo "[1] ---> Alignment_command_line: time bowtie -q -v 1 -S -p 20 -x $REFERENCE_SEQ2MAP $SAMPLE  $OUTDIR/${FILENAME}.sam"
+# command line
 time bowtie -q -v 1 -S -p 20 -x $REFERENCE_SEQ2MAP $SAMPLE  $OUTDIR/${FILENAME}.sam
 wait;
 sleep 3;
 
 
-# Sort aligment
+# Sort alignment
 echo "----------------------------------------------------------------------------------------------------------------------------------"
 echo "[2] ---> Sort_ALN_command_line: time samtools sort  --threads 10  $OUTDIR/${FILENAME}.sam  -o $OUTDIR/${FILENAME}.sorted.sam"
+# command line
 time samtools sort  --threads 10  $OUTDIR/${FILENAME}.sam  -o $OUTDIR/${FILENAME}.sorted.sam
+
 wait;
 sleep 3;
 
 
-## // Make coverage stats (run R script) //
+## Calculate coverage, size groups and distribution across the target mapped sequence (R script)
 echo "----------------------------------------------------------------------------------------------------------------------------------"
 echo "[3] ---> Rscript_command_line: time /home/jaketu/R/R-3.6.2/lib/R/bin/Rscript  $RSCRIPT_COVERAGE  $OUTDIR/${FILENAME}.sorted.sam  ${FILENAME}  $TARGET_REF_SEQ $OUTDIR";
+# command line
 time /home/jaketu/R/R-3.6.2/lib/R/bin/Rscript  $make_coverage_analysis_EVE_R  $OUTDIR/${FILENAME}.sorted.sam  ${FILENAME}  $TARGET_REF_SEQ $OUTDIR
 wait;
 sleep 3;

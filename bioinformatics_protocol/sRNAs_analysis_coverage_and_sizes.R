@@ -6,19 +6,16 @@
 # Questions: nabor.lozada@gmail.com
 
 
-
 # ---------------------------------------------------------------------------------------------------------------------------------------
 # Description:
 # ---------------------------------------------------------------------------------------------------------------------------------------
-#
 # R scripts that quantifies and gets the distribution of sequences when targeted to a specific reference genome or sequence.
 #
 # The distribution and quantification of small RNAs across for a reference sequence it is estimated with this custom R script using
 # simple code and functions to parse a SAM file with the tidyverse v1.3.1 and Biostrings v2.54.0 R packages.
 #
 # Briefly, sequence length, mapping strands and reads counts information were extracted from SAM files, then small RNAs count frequencies
-# mapped either to one or both strands were performed only for sequence lengths ≥18 and ≤33 bp.  
-#
+# mapped either to one or both strands were performed only for sequence lengths ≥18 and ≤33 bp.
 # ---------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -28,16 +25,6 @@
 #    user  system elapsed 
 # 826.032  42.212 873.693 
 
-
-# VERIFY EVE sequence length:
-#   awk '/^>/ {if (seqlen){print seqlen}; print ;seqlen=0;next; } { seqlen += length($0)}END{print seqlen}' /home/tigerpv_das/users_data/Nabor/otherWorks/hugo/reference_sequences/EVE_integration/EVE_integration.fasta
-# >CFAV-EVE-3_viral_integration
-# 734
-# VERIFY CFAV sequence length:
-#   awk '/^>/ {if (seqlen){print seqlen}; print ;seqlen=0;next; } { seqlen += length($0)}END{print seqlen}' /home/tigerpv_das/users_data/Nabor/otherWorks/hugo/reference_sequences/CFAV_genome/CFAV_genome_RioPiedras.fasta >GQ165810_CFAV_Rio_Piedras
-# >GQ165810_CFAV_Rio_Piedras
-# 9765
-# ---------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -516,6 +503,15 @@ save.image(file = filename_Rsession);
 
 
 
+# VERIFY EVE sequence length:
+#   awk '/^>/ {if (seqlen){print seqlen}; print ;seqlen=0;next; } { seqlen += length($0)}END{print seqlen}' /home/tigerpv_das/users_data/Nabor/otherWorks/hugo/reference_sequences/EVE_integration/EVE_integration.fasta
+# >CFAV-EVE-3_viral_integration
+# 734
+# VERIFY CFAV sequence length:
+#   awk '/^>/ {if (seqlen){print seqlen}; print ;seqlen=0;next; } { seqlen += length($0)}END{print seqlen}' /home/tigerpv_das/users_data/Nabor/otherWorks/hugo/reference_sequences/CFAV_genome/CFAV_genome_RioPiedras.fasta >GQ165810_CFAV_Rio_Piedras
+# >GQ165810_CFAV_Rio_Piedras
+# 9765
+# ---------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -529,17 +525,17 @@ save.image(file = filename_Rsession);
 #-@-#   SAM/BAM file format:
 #-@-#   
 #-@-#   --------------------------------------------------------------------------------------------------
-#-@-#   Col	Field	Type		Regexp/Range			Brief description
+#-@-#   Col	Field	Type		Regexp/Range			        Brief description
 #-@-#   --------------------------------------------------------------------------------------------------
-#-@-#   1	QNAME	String		[!-?A-~]{1,254}         	Query template NAME
-#-@-#   2	FLAG	Int	    	[0, 216 − 1] 	        	bitwise FLAG
-#-@-#   3	RNAME	String		\*|[:rname:∧*=][:rname:]* 	Reference sequence NAME12
-#-@-#   4	POS	Int	    	[0, 231 − 1] 			1-based leftmost mapping POSition
-#-@-#   5	MAPQ	Int	    	[0, 28 − 1] 			MAPping Quality
-#-@-#   6	CIGAR	String		\*|([0-9]+[MIDNSHP=X])+ 	CIGAR string
+#-@-#   1	QNAME	String		[!-?A-~]{1,254}         	    Query template NAME
+#-@-#   2	FLAG	Int	    	[0, 216 − 1] 	        	    bitwise FLAG
+#-@-#   3	RNAME	String		\*|[:rname:∧*=][:rname:]* 	    Reference sequence NAME12
+#-@-#   4	POS	    Int	    	[0, 231 − 1] 			        1-based leftmost mapping POSition
+#-@-#   5	MAPQ	Int	    	[0, 28 − 1] 			        MAPping Quality
+#-@-#   6	CIGAR	String		\*|([0-9]+[MIDNSHP=X])+ 	    CIGAR string
 #-@-#   7	RNEXT	String		\*|=|[:rname:∧*=][:rname:]* 	Reference name of the mate/next read
-#-@-#   8	PNEXT	Int	    	[0, 231 − 1] 			Position of the mate/next read
-#-@-#   9	TLEN	Int	    	[−231 + 1, 231 − 1] 		observed Template LENgth
+#-@-#   8	PNEXT	Int	    	[0, 231 − 1] 			        Position of the mate/next read
+#-@-#   9	TLEN	Int	    	[−231 + 1, 231 − 1] 		    observed Template LENgth
 #-@-#   10	SEQ	String		\*|[A-Za-z=.]+ 		segment SEQuence
 #-@-#   11	QUAL	String		[!-~]+ 			ASCII of Phred-scaled base QUALity+33
 #-@-#   --------------------------------------------------------------------------------------------------

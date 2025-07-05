@@ -9,19 +9,18 @@
 # ---------------------------------------------------------------------------------------------------------------------------------------
 # Description:
 # ---------------------------------------------------------------------------------------------------------------------------------------
-# R scripts that quantifies and gets the distribution of sequences when targeted to a specific reference genome or sequence.
+# R scripts that quantifies and obtains the distribution of sRNAs when targeted to a specific reference genome or sequence.
 #
 # The distribution and quantification of small RNAs across for a reference sequence it is estimated with this custom R script using
 # simple code and functions to parse a SAM file with the tidyverse v1.3.1 and Biostrings v2.54.0 R packages.
 #
 # Briefly, sequence length, mapping strands and reads counts information were extracted from SAM files, then small RNAs count frequencies
-# mapped either to one or both strands were performed only for sequence lengths ≥18 and ≤33 bp.
+# mapped either to one or both strands were performed only for sequence lengths ≥18 and ≤33 bp. Outputs are produced in CSV format files.
+# Figures were create with PRISM GradPath using the CSV files.  
 # ---------------------------------------------------------------------------------------------------------------------------------------
 
 
 # Expected time with an EVE sequence:
-#    user  system elapsed 
-# 716.428  40.076 790.099 
 #    user  system elapsed 
 # 826.032  42.212 873.693 
 
@@ -32,7 +31,6 @@
 suppressMessages(library(tidyverse));
 suppressMessages(library(ggplot2));
 suppressMessages(library(Biostrings));
-#library(data.table)
 
 
 
@@ -50,7 +48,6 @@ output_path <- args[[4]];
 
 
 # define length of reference genome:
-#ifelse(args[[3]]=="EVE", seqTargetLength = 734, ifelse(args[[3]]=="EVE", seqTargetLength = 9765, "WARNING: 'seqTargetLength' NOT ASSIGNED!!")
 seqTargetLength = 0;
 
 if (treatment=="EVE") {
@@ -64,11 +61,7 @@ if (treatment=="EVE") {
     stop("The value is ZERO, so the script must end here.")
 }
 
-# sam_infile  =  "L4_1.sorted.sam";
-# sample      =  "L4_1";
-# treatment   =  "CFAV"
-# output_path =  "/home/tigerpv_das/users_data/Nabor/otherWorks/hugo/scripts/main_scripts/final_reproducible_scripts/";
-# seqTargetLength =  9765 (CFAV) or 734 (EVE)
+
 
 cat("\n\nInput arguments:\n")
 sam_infile
@@ -79,15 +72,14 @@ seqTargetLength
 cat("\n\n")
 
 
+
+
 # set dir
 setwd(output_path);
 
 
-
-
 # set main filename
 sample_name <-  paste0(sample,".",treatment);
-
 
 
 
@@ -310,243 +302,12 @@ write.csv(coverage_data2plot_updated, file=filename_Coverage_allREADS_CSV, row.n
 
 
 
-# stacked-bar plot
-sample_cov_plot_both_strands <- ggplot(coverage_data2plot_updated, aes(fill=Strand, y=Frequency_byStrand, x=Postition)) + 
-                                    geom_bar(position="dodge", stat="identity", , width=10.0) +
-                                    scale_fill_manual(values= c("red", "blue"),
-                                                    breaks= c("+", "-"),
-                                                    labels= c("+","-")
-                                    ) +
-                                    scale_x_continuous(expand = c(0, 0.1), limits = c(1,seqTargetLength), breaks = seq(0,seqTargetLength, by = 100)) +
-                                    scale_y_continuous(expand = c(0.005, 0), limits = c(-30,80), breaks = seq(-30,80, by = 10)) +
-                                    theme_minimal() +
-                                    theme(axis.text.x = element_text(angle = 0, hjust = 0.50, vjust = 1.0, colour = "black", size=20),
-                                        axis.text.y = element_text(colour = "black",size=20),
-                                        axis.title.x = element_text(color="black", size=23, face="bold"),
-                                        axis.title.y = element_text(color="black", size=23, face="bold"),
-                                        axis.text=element_text(size=10),
-                                        panel.border = element_rect(linetype = "solid", fill = NA, colour = "black", size = 2),
-                                        panel.background = element_blank(),               # element_rect(fill = NULL, colour = NULL),   # size = 0.5, linetype = "solid"
-                                        panel.grid.major = element_blank(),               # element_line(colour = NULL),                # size = 0.5, linetype = 'solid',  
-                                        panel.grid.minor = element_blank(),               # element_line(colour = NULL),                # size = 0.25, linetype = 'solid', 
-                                        axis.ticks = element_line(colour = "black", size=2), 
-                                        axis.ticks.length = unit(0.15, "cm"), 
-                                        legend.position = "right",
-                                        legend.key.size = unit(0.7, 'cm'),
-                                        legend.title = element_text(size=20),
-                                        legend.text = element_text(size=15)
-                                    ) +
-                                    geom_segment(aes(x = 1, y = 0, xend = seqTargetLength, yend = 0), size=1.0) +
-                                    guides(fill=guide_legend(title="Strand")) +
-                                    labs(x = "EVE sequence positions (bp)", y = "Coverage (Number of reads)")
-
-
-# outfile
-filename_Coverage_allREADS_PLOT <- paste0(output_path,"/",sample_name,".coverage.sRNA_sequence_all_reads.pdf");
-
-pdf(file=filename_Coverage_allREADS_PLOT, width=24, height=10)
-sample_cov_plot_both_strands
-dev.off()
-
-
-
-
-
-# WHOLE EVE INTEGRATION SEQUENCE: ONLY 21 SEQ-NTS SIZE
-# -----------------------------------------------------------------------------
-
-# extract mapped reads from specific sizes:
-sRNA_sequence_mapped_reads_21nts.plot <- coverage_data2plot_updated %>% dplyr::filter(alignmentLength==21)
-sRNA_sequence_mapped_reads_26_30nts.plot <- coverage_data2plot_updated %>% dplyr::filter(alignmentLength>=26 & alignmentLength<=30)
-
-
-# coverage plot: 21nts 
-sample_cov_plot_21nts <- ggplot(sRNA_sequence_mapped_reads_21nts.plot, aes(fill=Strand, y=Frequency_byStrand, x=Postition)) + 
-                            geom_bar(position="dodge", stat="identity", , width=10.0) +
-                            scale_fill_manual(values= c("red", "blue"),
-                                            breaks= c("+", "-"),
-                                            labels= c("+","-")
-                            ) +
-                            scale_x_continuous(expand = c(0, 0.1), limits = c(1,seqTargetLength), breaks = seq(0,seqTargetLength, by = 100)) +
-                            scale_y_continuous(expand = c(0.005, 0), limits = c(-30,80), breaks = seq(-30,80, by = 10)) +
-                            theme_minimal() +
-                            theme(axis.text.x = element_text(angle = 0, hjust = 0.50, vjust = 1.0, colour = "black", size=20),
-                                axis.text.y = element_text(colour = "black",size=20),
-                                axis.title.x = element_text(color="black", size=23, face="bold"),
-                                axis.title.y = element_text(color="black", size=23, face="bold"),
-                                axis.text=element_text(size=10),
-                                panel.border = element_rect(linetype = "solid", fill = NA, colour = "black", size = 2),
-                                panel.background = element_blank(),               # element_rect(fill = NULL, colour = NULL),   # size = 0.5, linetype = "solid"
-                                panel.grid.major = element_blank(),               # element_line(colour = NULL),                # size = 0.5, linetype = 'solid',  
-                                panel.grid.minor = element_blank(),               # element_line(colour = NULL),                # size = 0.25, linetype = 'solid', 
-                                axis.ticks = element_line(colour = "black", size=2), 
-                                axis.ticks.length = unit(0.15, "cm"), 
-                                legend.position = "right",
-                                legend.key.size = unit(0.7, 'cm'),
-                                legend.title = element_text(size=20),
-                                legend.text = element_text(size=15)
-                            ) +
-                            geom_segment(aes(x = 1, y = 0, xend = seqTargetLength, yend = 0), size=1.0) +
-                            guides(fill=guide_legend(title="Strand")) +
-                            labs(x = "EVE sequence positions (bp)", y = "Coverage (Number of reads)")
-
-
-# outfile
-filename_Coverage_READS_21nts_PLOT <- paste0(output_path,"/",sample_name,".coverage.sRNA_sequence_21nts_reads.pdf");
-
-pdf(file=filename_Coverage_READS_21nts_PLOT, width=24, height=10)
-sample_cov_plot_21nts
-dev.off()
-
-
-
-
-
-
-
-# coverage plot: 26-30 nts 
-sample_cov_plot_26_30nts <-  ggplot(sRNA_sequence_mapped_reads_26_30nts.plot, aes(fill=Strand, y=Frequency_byStrand, x=Postition)) + 
-                                geom_bar(position="dodge", stat="identity", , width=10.0) +
-                                scale_fill_manual(values= c("red", "blue"),
-                                                breaks= c("+", "-"),
-                                                labels= c("+","-")
-                                ) +
-                                scale_x_continuous(expand = c(0, 0.1), limits = c(1,seqTargetLength), breaks = seq(0,seqTargetLength, by = 100)) +
-                                scale_y_continuous(expand = c(0.005, 0), limits = c(-30,80), breaks = seq(-30,80, by = 10)) +
-                                theme_minimal() +
-                                theme(axis.text.x = element_text(angle = 0, hjust = 0.50, vjust = 1.0, colour = "black", size=20),
-                                    axis.text.y = element_text(colour = "black",size=20),
-                                    axis.title.x = element_text(color="black", size=23, face="bold"),
-                                    axis.title.y = element_text(color="black", size=23, face="bold"),
-                                    axis.text=element_text(size=10),
-                                    panel.border = element_rect(linetype = "solid", fill = NA, colour = "black", size = 2),
-                                    panel.background = element_blank(),               # element_rect(fill = NULL, colour = NULL),   # size = 0.5, linetype = "solid"
-                                    panel.grid.major = element_blank(),               # element_line(colour = NULL),                # size = 0.5, linetype = 'solid',  
-                                    panel.grid.minor = element_blank(),               # element_line(colour = NULL),                # size = 0.25, linetype = 'solid', 
-                                    axis.ticks = element_line(colour = "black", size=2), 
-                                    axis.ticks.length = unit(0.15, "cm"), 
-                                    legend.position = "right",
-                                    legend.key.size = unit(0.7, 'cm'),
-                                    legend.title = element_text(size=20),
-                                    legend.text = element_text(size=15)
-                                ) +
-                                geom_segment(aes(x = 1, y = 0, xend = seqTargetLength, yend = 0), size=1.0) +
-                                guides(fill=guide_legend(title="Strand")) +
-                                labs(x = "EVE sequence positions (bp)", y = "Coverage (Number of reads)")
-
-
-# outfile
-filename_Coverage_READS_26_30nts_PLOT <- paste0(output_path,"/",sample_name,".coverage.sRNA_sequence_26-30nts_reads.pdf");
-
-pdf(file=filename_Coverage_READS_26_30nts_PLOT, width=24, height=10)
-sample_cov_plot_26_30nts
-dev.off()
-
-
-
-
-
-
-
-
-# WHOLE EVE SEQUENCE COVERAGE: ALL COVERAGE FIGURES MERGED
-# -----------------------------------------------------------------------------
-library(ggpubr)
-
-
-title_plot <- paste0("EVE sequence coverage: ",sample_name);
-
-sample_cov_plot_both_strands  <- sample_cov_plot_both_strands + xlab(NULL) + ylab("All mapped reads size");
-sample_cov_plot_21nts         <- sample_cov_plot_21nts        + xlab(NULL) + ylab("Read size: 21 nts");
-sample_cov_plot_26_30nts      <- sample_cov_plot_26_30nts     + xlab(NULL) + ylab("Read size: 26-30 nts");
-
-
-figure <- ggarrange(sample_cov_plot_both_strands, 
-                    sample_cov_plot_21nts,
-                    sample_cov_plot_26_30nts,
-                    ncol = 1, nrow = 3) 
-
-
-
-
-# outfile
-filename_all_coverages_combined <- paste0(output_path,"/",sample_name,".coverage.sRNA_sequence_all_coverage_plots.pdf");
-
-pdf(file=filename_all_coverages_combined, width=24, height=13)
-
-#figure
-annotate_figure(figure,
-                top = text_grob(title_plot, color = "black", face = "bold", size = 30),
-                left = text_grob("Coverage (Reads Number)", color = "black", face = "bold", size = 25, rot = 90)
-                )
-dev.off()
-
-
-
+# NOTE: If required, use this table to classify sRNAs as 21 nts or those associated to a length between 26-to-30 nts.
 
 # save this session
 filename_Rsession <- paste0(output_path,"/Perdomo_etal_2025.small_RNAs.seq_size_distribution_and_coverage.",sample_name,".Rsession.RData");
 
 save.image(file = filename_Rsession);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# VERIFY EVE sequence length:
-#   awk '/^>/ {if (seqlen){print seqlen}; print ;seqlen=0;next; } { seqlen += length($0)}END{print seqlen}' /home/tigerpv_das/users_data/Nabor/otherWorks/hugo/reference_sequences/EVE_integration/EVE_integration.fasta
-# >CFAV-EVE-3_viral_integration
-# 734
-# VERIFY CFAV sequence length:
-#   awk '/^>/ {if (seqlen){print seqlen}; print ;seqlen=0;next; } { seqlen += length($0)}END{print seqlen}' /home/tigerpv_das/users_data/Nabor/otherWorks/hugo/reference_sequences/CFAV_genome/CFAV_genome_RioPiedras.fasta >GQ165810_CFAV_Rio_Piedras
-# >GQ165810_CFAV_Rio_Piedras
-# 9765
-# ---------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-#-@-#   ########################################################################################################################################################################
-#-@-#   ## INFORMATION SAM/BAM FILES: SHORT INTRO TO FORMAT AND THEIR DATA STRUCTURE
-#-@-#   ########################################################################################################################################################################
-#-@-#
-#-@-#
-#-@-#   SAM/BAM file format:
-#-@-#   
-#-@-#   --------------------------------------------------------------------------------------------------
-#-@-#   Col	Field	Type		Regexp/Range			        Brief description
-#-@-#   --------------------------------------------------------------------------------------------------
-#-@-#   1	QNAME	String		[!-?A-~]{1,254}         	    Query template NAME
-#-@-#   2	FLAG	Int	    	[0, 216 − 1] 	        	    bitwise FLAG
-#-@-#   3	RNAME	String		\*|[:rname:∧*=][:rname:]* 	    Reference sequence NAME12
-#-@-#   4	POS	    Int	    	[0, 231 − 1] 			        1-based leftmost mapping POSition
-#-@-#   5	MAPQ	Int	    	[0, 28 − 1] 			        MAPping Quality
-#-@-#   6	CIGAR	String		\*|([0-9]+[MIDNSHP=X])+ 	    CIGAR string
-#-@-#   7	RNEXT	String		\*|=|[:rname:∧*=][:rname:]* 	Reference name of the mate/next read
-#-@-#   8	PNEXT	Int	    	[0, 231 − 1] 			        Position of the mate/next read
-#-@-#   9	TLEN	Int	    	[−231 + 1, 231 − 1] 		    observed Template LENgth
-#-@-#   10	SEQ	String		\*|[A-Za-z=.]+ 		segment SEQuence
-#-@-#   11	QUAL	String		[!-~]+ 			ASCII of Phred-scaled base QUALity+33
-#-@-#   --------------------------------------------------------------------------------------------------
-#-@-#   
-#-@-#   
-#-@-#   TIP: Single end reads yield only 3 possible flag values: 0,4 and 16.
-#-@-#    
-#-@-#   * 0 means the read aligned in the forward direction: POSITIVE 
-#-@-#   * 16 mean it aligned in the reverse direction: NEGATIVE 
-#-@-#   * 4 means it didn't align.
-#-@-#   
-#-@-#   ########################################################################################################################################################################
 
 

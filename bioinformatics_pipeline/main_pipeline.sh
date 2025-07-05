@@ -9,10 +9,13 @@
 # This script process the raw reads of a single sample (R1) by: mapping to a reference sequence (SAM file), sort aligned reads, and calculate (R script call):
 #    coverage, size distribution, and small RNAs presence across the targeted reference sequence.
 #
+# The script just requires two arguments (see below), then it will run each step (bowtie -> samtools -> R script). 
+# Computer requirements: ~13Gb of RAM (R script is the heaviest part), and 20 cores (it can be modified).
+#
 # Run: 
 #      bash  main_pipeline.sh  [ARG_1]  [ARG_2]
 # where: 
-#     ARG_1: sample name with the full path directory: /path/to/dir/sample.R1.fq.gz
+#     ARG_1: R1 sample name with the full path directory: /path/to/dir/sample.R1.fq.gz
 #     ARG_2: targeted sequence FLAG: EVE or CFAV 
 # --------------------------------------------------------------------------------------------------------
 

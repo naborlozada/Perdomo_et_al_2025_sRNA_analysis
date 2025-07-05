@@ -49,7 +49,6 @@ seqTargetLength = 0;
 
 if (treatment=="EVE") {
     seqTargetLength = 734;
-    #print("it is positive.")
 } else if (treatment=="CFAV") {
     seqTargetLength = 9765;
 } else {
@@ -123,8 +122,6 @@ cat("Make counts for LENGTH SEQUENCE size distribution...")
 # total number of reads:
 total_reads_count <- nrow(sample_data_reads)
 
-WARNING_MSM = "WARNING";
-
 
 # Parse sense/antisense strand and make counts based on length reads 
 sample_data_reads_stats <- dplyr::filter(sample_data_reads) %>%
@@ -138,7 +135,7 @@ sample_data_reads_stats <- dplyr::filter(sample_data_reads) %>%
 
 
 # remove unmapped (if there is any)
-sample_data_reads_stats.flitrd <- dplyr::filter(sample_data_reads_stats, FLAG != 4) %>% 
+sample_data_reads_stats.fltrd <- dplyr::filter(sample_data_reads_stats, FLAG != 4) %>% 
                                                 dplyr::select(alignmentLength, ReadsCounts_byStrand, Counts)
 
 
@@ -157,7 +154,7 @@ data2fill <- data.frame(alignmentLength = qwidth_values,
 
 
 # Merge the new dataframe into the initial dataframe, updating only the matching qwidth values
-data2plot <- merge(data2fill, sample_data_reads_stats.flitrd, by = c("alignmentLength", "ReadsCounts_byStrand"), all.x = TRUE)
+data2plot <- merge(data2fill, sample_data_reads_stats.fltrd, by = c("alignmentLength", "ReadsCounts_byStrand"), all.x = TRUE)
 
 
 # Parse the Frequency data values and replace them with the new datapoints

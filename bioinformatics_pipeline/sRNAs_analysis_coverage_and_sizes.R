@@ -6,7 +6,6 @@
 # Questions: nabor.lozada@gmail.com
 # ---------------------------------------------------------------------------------------------------------------------------------------
 # Description:
-# ---------------------------------------------------------------------------------------------------------------------------------------
 # R scripts that quantifies and obtains the distribution of sRNAs when targeted to a specific reference genome or sequence in a SAM file.
 #
 # The distribution and quantification of small RNAs across mapped reads in a reference sequence is estimated by using filtering/parsing 

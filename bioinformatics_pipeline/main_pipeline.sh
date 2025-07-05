@@ -6,7 +6,7 @@
 
 # --------------------------------------------------------------------------------------------------------
 # Description
-# This script process the raw reads of a single sample (R1) by: mapping to a reference sequence, sort aligned reads, and calculate (R script call):
+# This script process the raw reads of a single sample (R1) by: mapping to a reference sequence (SAM file), sort aligned reads, and calculate (R script call):
 #    coverage, size distribution, and small RNAs presence across the targeted reference sequence.
 #
 # Run: 

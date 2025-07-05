@@ -7,10 +7,10 @@
 # ---------------------------------------------------------------------------------------------------------------------------------------
 # Description:
 # ---------------------------------------------------------------------------------------------------------------------------------------
-# R scripts that quantifies and obtains the distribution of sRNAs when targeted to a specific reference genome or sequence.
+# R scripts that quantifies and obtains the distribution of sRNAs when targeted to a specific reference genome or sequence in a SAM file.
 #
-# The distribution and quantification of small RNAs across for a reference sequence it is estimated with this custom R script using
-# simple code and functions to parse a SAM file with the tidyverse v1.3.1 and Biostrings v2.54.0 R packages.
+# The distribution and quantification of small RNAs across mapped reads in a reference sequence is estimated by using filtering/parsing 
+# code and functions of the tidyverse v1.3.1 and Biostrings v2.54.0 R packages.
 #
 # Briefly, sequence length, mapping strands and reads counts information were extracted from SAM files, then small RNAs count frequencies
 # mapped either to one or both strands were performed only for sequence lengths ≥18 and ≤33 bp. Outputs are produced in CSV format files.
@@ -21,7 +21,7 @@
 # Expected time with an EVE sequence:
 #    user  system elapsed 
 # 826.032  42.212 873.693 
-
+# Remove saving R session to readuce the time to the half.
 
 
 
@@ -179,7 +179,7 @@ write.csv(data2plot_updated, file=filename_ReadsSizeDistr_CSV, row.names = FALSE
 
 
 
-# make plot: stacked-bar
+# make grouped-stranded bar plot
 sample_mapped_reads_both_strands <-  ggplot(data2plot_updated, aes(fill=as.factor(ReadsCounts_byStrand), y=Frequency, x=alignmentLength)) + 
                                         geom_bar(position="dodge", stat="identity") +
                                         theme_classic() +
@@ -235,7 +235,7 @@ sample_data_reads_fltrd2plot$ReadsCounts_byStrand <- as.factor(as.character(samp
 
 
 # -----------------------------------------------------------------------------
-# CREATE MAIN TABLE WITH ALL GENOME POSITIONS
+# CREATE MAIN TABLE WITH ALL GENOME/SEQUENCE POSITIONS
 # -----------------------------------------------------------------------------
 
 # Create empty dataframe

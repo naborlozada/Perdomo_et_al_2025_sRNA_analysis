@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# version: 07/05/2025
 # author: Alejandro Nabor Lozada Chavez
 # questions: nabor.lozada@gmail.com
 

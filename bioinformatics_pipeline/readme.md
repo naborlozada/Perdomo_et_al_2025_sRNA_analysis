@@ -1,6 +1,6 @@
 ## Description of the pipeline.
 
-The pipeline was applied to all mosquito samples described in the paper. Raw reads are publicly available in the NCBI SRA database under the ID SRAXXXXX.
+The pipeline was applied to all mosquito samples described in the paper. Raw reads are publicly available in the NCBI SRA database under the BioProject ID PRJNA1287247.
 Reads were mapped against two different reference sequences: 1) [Cell Fusion Agent Virus (CFAV) genome "Rio_Piedras GQ165810"](https://www.ncbi.nlm.nih.gov/nuccore/GQ165810.1), and 2) [Endogenous Viral Element 3 from Crava et al., 2020](https://onlinelibrary.wiley.com/doi/10.1111/mec.15798). See methods in the paper.
 
 A short simple pipeline was created to combine all needed tasks: identify, measure sizes, quantify and locate the distribution of small RNAs of different lengths in the reference sequences separately.

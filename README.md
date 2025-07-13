@@ -1,4 +1,4 @@
-# Perdomo_et_al_2025__Aalbo_CFAV_smallRNAs
+# Perdomo_et_al_2025_sRNA_analysis
 
 Research paper: **Metabolic homeostasis favors tolerance to persistent Cell-fusing agent virus infection in *Aedes aegypti* mosquitoes*** \*
 
@@ -27,5 +27,5 @@ Cite this work:
 <br /> 
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a> <br />
 
-Additional information, see [DISTIBUTION file](https://github.com/naborlozada/Perdomo_et_al_2025__Aalbo_CFAV_small_RNAs/blob/main/DISTRIBUTION.md)
+Additional information, see [DISTIBUTION file](https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis/blob/main/DISTRIBUTION.md)
  

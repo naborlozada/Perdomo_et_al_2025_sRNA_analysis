@@ -8,7 +8,7 @@ The data files and scripts are free. You can redistribute it and/or use it for s
 The material contained in this repository can be used it and/or distributed it in the hope that it will be useful for the community,
 but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-Cite this work: \
+Cite this repository: \
    Lozada-Chávez, A. N. 2025. Metabolic homeostasis favors tolerance to persistent Cell-fusing agent virus infection in Aedes aegypti mosquitoes. Github repository. https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis.
 
 

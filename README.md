@@ -22,8 +22,8 @@ This repository contains the datasets (link), and bioinformatics protocol steps 
 ** Each script has notes with general and/or technical information. For details, read the Methods section in the manuscript. 
 
 ---
-Cite this work:
-- Perdomo H, Khorramnejad A, Chen F, Lozada-Chávez AN, Bonizzoni M. 2025. Metabolic homeostasis favors tolerance to persistent Cell-fusing agent virus infection in Aedes aegypti mosquitoes. Github repository. https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis.
+Cite this repository:
+- Lozada-Chávez, A. N. 2025. Metabolic homeostasis favors tolerance to persistent Cell-fusing agent virus infection in Aedes aegypti mosquitoes. Github repository. https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis.
 <br /> 
 <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a> <br />
 

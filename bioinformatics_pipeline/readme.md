@@ -49,7 +49,10 @@ bowtie-build  ${EVE2}.fasta  EVE3seq
 
 3. Run pipeline:
 ```bash
-# single sample jobs run for a low-computational resources case.
+# Single sample job run (assuming there is not much computational resources). To reduce/increase the computation power,
+# change the value in the options "-p" of bowtie (now set it to use 20 threads), or the option "thread" in samtools. The R script runs in a single core.
+# Overall, it uses around 30Gb of RAM.
+ 
 for sample in /path/to/raw_reads/mapping_to_CFAV/*.fq.gz; do bash main_pipeline.sh  $sample CFAV  2>&1 | tee ${sample}.CFAV.stderr.log; 
 for sample in /path/to/raw_reads/mapping_to_EVE/*.fq.gz; do bash main_pipeline.sh  $sample EVE  2>&1 | tee ${sample}.EVE.stderr.log;
 ```

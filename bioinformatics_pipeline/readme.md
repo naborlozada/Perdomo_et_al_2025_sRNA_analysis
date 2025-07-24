@@ -6,11 +6,13 @@ Reads were mapped against three different reference sequences independently (for
   2) [CFAV-EVE-3 from Crava et al., 2020](https://onlinelibrary.wiley.com/doi/10.1111/mec.15798)
   3) EVE-2 from Suziki et al. (2020). 
 
-A short simple pipeline was created to combine all needed tasks: identify, measure sizes, quantify and locate the distribution of small RNAs of different lengths in the reference sequences separately.
+A short simple pipeline was created to combine all needed tasks: identify, measure sizes, quantify and locate the distribution of small RNAs of different lengths in the reference sequences separately. See notes below.
 
-To run properly the pipeline `main_pipeline.sh`, script full path files and programs/packages must be previously installed and set it properly. In this pipeline, an additional "activation"--rathen than modification--has be be done: switch to a specific reference genome and/or sequence by uncommenting the line to the correspoding `refseq` used for mapping (i.e., CFAV, EVE2 or EVE3). 
+NOTE 1: For simplicity, the pipeline `main_pipeline.sh` script is writen to run only one reference sequence at time, that is, only results associated to the reference sequences `CFAV_genome_RioPiedras` will be produced (after adapting the line of code to your local path and retaining the same index name). To get the results for the other two reference sequences (EVE2 and EVE3) replace the index name and full path file with the corresponding reference sequence. Line to modify: `REFERENCE_SEQ2MAP`.
 
-PIPELINE:
+NOTE 2: To run properly the pipeline `main_pipeline.sh` script, full path files (reference sequence infiles, output directories) and programs/packages (binaries, R) must be previously installed and set it properly. Programs used: bowtie, samtools, R, and Tidyverse, Biostrings and ggplot2 R packages. See details in Methods in the manuscript. The location of the R script should be declare in the variable `RSCRIPT_COVERAGE` of the `main_pipeline.sh` script. 
+
+START.
 
 1. Quality Control analysis.
 ```bash
@@ -24,6 +26,7 @@ multiqc .
 cd ../mapping_to_EVE/
 multiqc .
  ```
+
 
 2. Index target reference sequences:
 ```bash
@@ -42,6 +45,7 @@ bowtie-build  ${EVE2}.fasta  EVE3seq
 
 # After this, modify the "main_pipeline.sh" script to add each reference sequence (as described aboved). Be sure to use the index_name (i.e. CFAVgenome)
 ```
+
 
 3. Run pipeline:
 ```bash

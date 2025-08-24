@@ -17,8 +17,14 @@ START.
 1. Quality Control analysis.
 ```bash
 # make stats
-for sample in /path/to/raw_reads/mapping_to_*/*.fq.gz; do samtools flagstats $sample > ${sample}.txt;
-for sample in /path/to/raw_reads/mapping_to_*/*.fq.gz; do fastqc -o outputdir/ $sample;
+for sample in /path/to/raw_reads/mapping_to_*/*.fq.gz; do
+    newfile1="$(basename $sample .fq.gz)";
+    samtools flagstats $sample > ${newfile1}.samtools_stats.txt;
+done
+
+for sample in /path/to/raw_reads/mapping_to_*/*.fq.gz; do
+    fastqc -o outputdir/ $sample;
+done
 
 # summarize stats:
 cd mapping_to_CFAV/
@@ -43,18 +49,26 @@ bowtie-build  ${CFAV}.fasta  CFAVgenome
 bowtie-build  ${EVE}.fasta   EVE2seq
 bowtie-build  ${EVE2}.fasta  EVE3seq
 
-# After this, modify the "main_pipeline.sh" script to add each reference sequence (as described aboved). Be sure to use the index_name (i.e. CFAVgenome)
+# After this, modify the "main_pipeline.sh" script to add each reference sequence (as described aboved).
+# Be sure to use the index_name (i.e. CFAVgenome)
 ```
 
 
 3. Run pipeline:
 ```bash
 # Single sample job run (assuming there is not much computational resources). To reduce/increase the computation power,
-# change the value in the options "-p" of bowtie (now set it to use 20 threads), or the option "thread" in samtools. The R script runs in a single core.
-# Overall, it uses around 30Gb of RAM.
+# change the value in the options "-p" of bowtie (now set it to use 20 threads), or the option "thread" in samtools.
+# The R script runs in a single core. Overall, it uses around 30Gb of RAM.
  
-for sample in /path/to/raw_reads/mapping_to_CFAV/*.fq.gz; do bash main_pipeline.sh  $sample CFAV  2>&1 | tee ${sample}.CFAV.stderr.log; 
-for sample in /path/to/raw_reads/mapping_to_EVE/*.fq.gz; do bash main_pipeline.sh  $sample EVE  2>&1 | tee ${sample}.EVE.stderr.log;
+for sample in /path/to/raw_reads/mapping_to_CFAV/*.fq.gz; do
+    newfile2="$(basename $sample .fq.gz)";
+    bash main_pipeline.sh  $sample CFAV  2>&1 | tee ${newfile2}.CFAV.stderr.log;
+done
+ 
+for sample in /path/to/raw_reads/mapping_to_EVE/*.fq.gz; do
+    newfile3="$(basename $sample .fq.gz)";
+    bash main_pipeline.sh  $sample EVE  2>&1 | tee ${newfile3}.EVE.stderr.log;
+done
 ```
 
 

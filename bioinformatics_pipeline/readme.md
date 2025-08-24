@@ -59,12 +59,15 @@ bowtie-build  ${EVE2}.fasta  EVE3seq
 # Single sample job run (assuming there is not much computational resources). To reduce/increase the computation power,
 # change the value in the options "-p" of bowtie (now set it to use 20 threads), or the option "thread" in samtools.
 # The R script runs in a single core. Overall, it uses around 30Gb of RAM.
- 
+
+# pipeline for CFAV genome
 for sample in /path/to/raw_reads/mapping_to_CFAV/*.fq.gz; do
     newfile2="$(basename $sample .fq.gz)";
     bash main_pipeline.sh  $sample CFAV  2>&1 | tee ${newfile2}.CFAV.stderr.log;
 done
- 
+
+
+# pipeline for EVE integration sequence
 for sample in /path/to/raw_reads/mapping_to_EVE/*.fq.gz; do
     newfile3="$(basename $sample .fq.gz)";
     bash main_pipeline.sh  $sample EVE  2>&1 | tee ${newfile3}.EVE.stderr.log;

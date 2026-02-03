@@ -9,7 +9,7 @@ Authors: Hugo Perdomo, Ayda Khorramnejad, Francesco Chen, Alejandro Nabor Lozada
 ---
 
 Description:\
-This repository contains the datasets (link), and bioinformatics protocol steps used to analyzed the RNAseq data to detect small RNAs in *Aedes albopictus* mosquitoes infected with Cell Fusion Agents (CFAV). 
+This repository contains the datasets (link), and bioinformatics protocol steps used to analyzed the RNAseq data to detect small RNAs in *Aedes aegypti* mosquitoes infected with Cell Fusion Agents (CFAV). 
 
 - datasets:
     **RNAseq, raw reads:** [ONLINE] Original raw reads used for this research paper are publicly available (after publication) at the SRA database under the BioProject ID: **PRJNA1287247**.

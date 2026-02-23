@@ -1,6 +1,6 @@
 # Perdomo_et_al_2025_sRNA_analysis
 
-Research paper: **Tolerance to persistent cell-fusing agent virus infection in *Aedes aegypti* mosquitoes correlates with maintenance of lipid reserves*** \*
+Research paper: [**Tolerance to persistent cell-fusing agent virus infection in *Aedes aegypti* mosquitoes correlates with maintenance of lipid reserves**](https://doi.org/10.1186/s12915-026-02553-3) \*
 
 Authors: Hugo Perdomo, Ayda Khorramnejad, Francesco Chen, Alejandro Nabor Lozada-Chávez, Mariangela Bonizzoni.
 

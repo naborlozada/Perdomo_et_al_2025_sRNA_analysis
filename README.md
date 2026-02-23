@@ -1,10 +1,10 @@
 # Perdomo_et_al_2025_sRNA_analysis
 
-Research paper: **Metabolic homeostasis favors tolerance to persistent Cell-fusing agent virus infection in *Aedes aegypti* mosquitoes*** \*
+Research paper: **Tolerance to persistent cell-fusing agent virus infection in *Aedes aegypti* mosquitoes correlates with maintenance of lipid reserves*** \*
 
 Authors: Hugo Perdomo, Ayda Khorramnejad, Francesco Chen, Alejandro Nabor Lozada-Chávez, Mariangela Bonizzoni.
 
-\* This manuscript is under review.
+\* This manuscript has been accepted in **BMC Biology. In Press, 2026.**
 
 ---
 
@@ -22,8 +22,14 @@ This repository contains the datasets (link), and bioinformatics protocol steps 
 ** Each script has notes with general and/or technical information. For details, read the Methods section in the manuscript. 
 
 ---
-Cite this repository:
-- Lozada-Chávez, A. N. 2025. Perdomo_et_al_2025_sRNA_analysis. Github repository. https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis.
+
+Cite our work:
+- **[ARTICLE, provisional]** Perdomo, H.D., Khorramnejad, A., Chen, F. et al. Tolerance to persistent cell-fusing agent virus infection in Aedes aegypti mosquitoes correlates with maintenance of lipid reserves. BMC Biol (2026). https://doi.org/10.1186/s12915-026-02553-3.
+- **[REPOSITORY]** Lozada-Chávez, A. N. 2026. Perdomo_et_al_2025_sRNA_analysis. Github repository. https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis.
+
+For historical reasons, we cite here our **not peer review preprint** in BioRxiv ["*Metabolic homeostasis favors tolerance to persistent viral infection in Aedes aegypti mosquitoes*"](https://www.biorxiv.org/content/10.1101/2025.07.23.666353v1).
+
+
 <br/>
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 

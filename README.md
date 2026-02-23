@@ -30,8 +30,23 @@ Cite our work:
 For historical reasons, we cite here our **not peer review preprint** in BioRxiv ["*Metabolic homeostasis favors tolerance to persistent viral infection in Aedes aegypti mosquitoes*"](https://www.biorxiv.org/content/10.1101/2025.07.23.666353v1).
 
 
-<br/>
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
-Additional information on the **use and distribution of the material in this repository**, see [DISTRIBUTION file](https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis/blob/main/DISTRIBUTION.md)
- 
+
+
+<br/>
+
+## USE & DISTRIBUTION OF THIS REPOSITORY MATERIAL
+
+<a href="https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis">Perdomo_et_al_2025_sRNA_analysis</a> © 2026 by <a href="https://github.com/naborlozada/">Nabor Lozada</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International</a><img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;"><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="" style="max-width: 1em;max-height:1em;margin-left: .2em;">
+
+
+THIS IS A RELEASE VERSION OF THE DATA.
+
+The data files are free. You can redistribute it and/or use it for scientific research, educational or recreational purpose.
+If you use one or more of these scripts and/or data in a complete or partial form for your research, as well as any other information contained here, please cite us with at least one of above references.
+
+Key additional information about the **use and distribution of the material in this repository**, see [DISTRIBUTION file](https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis/blob/main/DISTRIBUTION.md)
+
+<br/>
+
+**THE AUTHORS**

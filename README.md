@@ -42,9 +42,9 @@ For historical reasons, we cite here our **not peer review preprint** in BioRxiv
 **This is a release version of the data and scripts.** <a href="https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis">Perdomo_et_al_2025_sRNA_analysis</a> © 2026 by <a href="https://github.com/naborlozada/">Nabor Lozada</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
 The data files are free. You can redistribute it and/or use it for scientific research, educational or recreational purpose.
-If you use one or more of these scripts and/or data in a complete or partial form for your research, as well as any other information contained here, please cite us with at least one of above references.
+If you use one or more of these scripts and/or data in a complete or partial form for your research, as well as any other information contained here, please cite our work with at least one of above references.
 
-Key additional information about the **use and distribution of the material in this repository**, see [DISTRIBUTION file](https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis/blob/main/DISTRIBUTION.md)
+Key additional information about the **use and distribution of the material in this repository**, see the [DISTRIBUTION file](https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis/blob/main/DISTRIBUTION.md).
 
 <br/>
 

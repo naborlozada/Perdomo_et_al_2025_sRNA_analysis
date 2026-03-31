@@ -4,7 +4,7 @@ Research paper: [**Tolerance to persistent cell-fusing agent virus infection in 
 
 Authors: Hugo Perdomo, Ayda Khorramnejad, Francesco Chen, Alejandro Nabor Lozada-Chávez, Mariangela Bonizzoni.
 
-\* This manuscript has been accepted in **BMC Biology. In Press, 2026.**
+\* This manuscript has been published in **BMC Biology.**
 
 ---
 
@@ -24,11 +24,11 @@ This repository contains the datasets (link), and bioinformatics protocol steps 
 ---
 
 Cite our work:
-- **[ARTICLE, provisional]** Perdomo, H.D., Khorramnejad, A., Chen, F. et al. Tolerance to persistent cell-fusing agent virus infection in Aedes aegypti mosquitoes correlates with maintenance of lipid reserves. BMC Biol (2026). https://doi.org/10.1186/s12915-026-02553-3.
-- **[REPOSITORY]** Lozada-Chávez, A. N. 2026. Perdomo_et_al_2025_sRNA_analysis. Github repository. https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis.
+- **ARTICLE:** Perdomo, H.D., Khorramnejad, A., Chen, F., Lozada-Chávez, A.N. and Bonizzoni, Mariangela. 2026. Tolerance to persistent cell-fusing agent virus infection in Aedes aegypti mosquitoes correlates with maintenance of lipid reserves. **BMC Biol** 24, 79 (2026). https://doi.org/10.1186/s12915-026-02553-3.
+- **REPOSITORY:** Lozada-Chávez, A. N. 2026. Perdomo_et_al_2025_sRNA_analysis. **Github** repository. https://github.com/naborlozada/Perdomo_et_al_2025_sRNA_analysis.
+- **RAW DATA:** Perdomo HD, Khorramnejad A, Chen F, Lozada Chavez AN, Bonizzoni M. Metabolic homeostasis favors tolerance to persistent viral infection in Aedes aegypti mosquitoes. 2025. **Zenodo**. https://doi.org/10.5281/zenodo.17098626.
 
 For historical reasons, we cite here our **not peer review preprint** in BioRxiv ["*Metabolic homeostasis favors tolerance to persistent viral infection in Aedes aegypti mosquitoes*"](https://www.biorxiv.org/content/10.1101/2025.07.23.666353v1).
-
 
 
 
